@@ -1,0 +1,9 @@
+body {
+    background-color: #f8f9fa;
+}
+.dashboard-card {
+    transition: transform .2s; /* Efeito de zoom no hover */
+}
+.dashboard-card:hover {
+    transform: scale(1.05);
+}
