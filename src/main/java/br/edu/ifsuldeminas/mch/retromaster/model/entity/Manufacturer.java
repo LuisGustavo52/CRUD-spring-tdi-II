@@ -20,7 +20,7 @@ public class Manufacturer {
     private String name;
 
     @NotNull(message = "A data de fundação não pode ser nula.")
-    @DateTimeFormat(pattern = "yyyy-MM-dd") // <-- ADICIONE ESTA LINHA
+    @DateTimeFormat(pattern = "yyyy-MM-dd") 
     private Date foundationDate;
 
     @NotBlank(message = "O CNPJ não pode ser vazio.")
@@ -28,8 +28,6 @@ public class Manufacturer {
 
     @NotNull(message = "É necessário informar se fabrica no Brasil.")
     private boolean manufacturesInBrazil;
-
-    // --- Getters e Setters ---
 
     public Integer getId() {
         return id;

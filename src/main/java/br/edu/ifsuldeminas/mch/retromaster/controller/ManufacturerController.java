@@ -25,21 +25,21 @@ public class ManufacturerController {
     public String listManufacturers(Model model) {
         List<Manufacturer> manufacturers = manufacturerRepository.findAll();
         model.addAttribute("manufacturers", manufacturers);
-        return "manufacturer/list"; // Página de listagem
+        return "manufacturer/list";
     }
 
     @GetMapping("/manufacturers/form")
     public String showManufacturerForm(@ModelAttribute("manufacturer") Manufacturer manufacturer) {
-        return "manufacturer/form"; // Página do formulário
+        return "manufacturer/form";
     }
 
     @PostMapping("/manufacturers/new")
     public String saveManufacturer(@Valid @ModelAttribute("manufacturer") Manufacturer manufacturer, BindingResult validationResult) {
         if (validationResult.hasErrors()) {
-            return "manufacturer/form"; // Se tiver erro, volta para o formulário
+            return "manufacturer/form"; 
         }
         manufacturerRepository.save(manufacturer);
-        return "redirect:/manufacturers"; // Redireciona para a listagem
+        return "redirect:/manufacturers"; 
     }
 
     @GetMapping("/manufacturers/update/{id}")
