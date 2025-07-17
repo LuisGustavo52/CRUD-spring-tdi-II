@@ -18,3 +18,26 @@
 	        crossorigin="anonymous">
 	</script>
 </th:block>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="navbar">
+    <a class="navbar-brand" href="#">RetroMaster</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/users}">Usuários</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/manufacturers}">Fabricantes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/excavators}">Retroescavadeiras</a>
+            </li>
+        </ul>
+    </div>
+</nav>

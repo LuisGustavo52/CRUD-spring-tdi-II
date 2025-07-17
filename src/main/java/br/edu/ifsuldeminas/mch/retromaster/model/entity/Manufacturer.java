@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Manufacturer {
@@ -19,6 +20,7 @@ public class Manufacturer {
     private String name;
 
     @NotNull(message = "A data de fundação não pode ser nula.")
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // <-- ADICIONE ESTA LINHA
     private Date foundationDate;
 
     @NotBlank(message = "O CNPJ não pode ser vazio.")
