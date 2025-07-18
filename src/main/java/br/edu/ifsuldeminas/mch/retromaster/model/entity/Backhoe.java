@@ -2,6 +2,8 @@ package br.edu.ifsuldeminas.mch.retromaster.model.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,8 +32,9 @@ public class Backhoe {
 
     @NotNull(message = "O ano de fabricação é obrigatório.")
     @PastOrPresent(message = "O ano de fabricação não pode ser uma data futura.")
-    @Temporal(TemporalType.DATE) 
-    private Date year;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // ANOTAÇÃO ADICIONADA AQUI
+    private Date fabricationYear;
 
     @NotNull(message = "O fabricante é obrigatório.")
     @ManyToOne
@@ -41,17 +44,24 @@ public class Backhoe {
     @NotNull(message = "O status é obrigatório")
     private boolean status;
 	
+	// Getters e Setters (sem alterações)
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getModel() {
 		return model;
 	}
 	public void setModel(String model) {
 		this.model = model;
 	}
-	public Date getYear() {
-		return year;
+	public Date getFabricationYear() {
+		return fabricationYear;
 	}
-	public void setYear(Date year) {
-		this.year = year;
+	public void setFabricationYear(Date fabricationYear) {
+		this.fabricationYear = fabricationYear;
 	}
 	public Manufacturer getManufacturer() {
 		return manufacturer;
@@ -65,6 +75,4 @@ public class Backhoe {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	
-	 
 }

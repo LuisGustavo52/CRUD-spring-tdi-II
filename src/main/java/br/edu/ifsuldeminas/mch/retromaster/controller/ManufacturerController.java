@@ -18,43 +18,41 @@ import java.util.Optional;
 @Controller
 public class ManufacturerController {
 
-    @Autowired
-    private ManufacturerRepository manufacturerRepository;
+	    @Autowired
+	    private ManufacturerRepository manufacturerRepository;
 
-    @GetMapping("/manufacturers")
-    public String listManufacturers(Model model) {
-        List<Manufacturer> manufacturers = manufacturerRepository.findAll();
-        model.addAttribute("manufacturers", manufacturers);
-        return "manufacturer/list";
-    }
+	    @GetMapping("/manufacturers")
+	    public String listManufacturers(Model model) {
+	        List<Manufacturer> manufacturers = manufacturerRepository.findAll();
+	        model.addAttribute("manufacturers", manufacturers);
+	        return "manufacturer/list";
+	    }
+	    @GetMapping("/manufacturers/form")
+	    public String showManufacturerForm(@ModelAttribute("manufacturer") Manufacturer manufacturer) {
+	        return "manufacturer/form";
+	    }
+	    @PostMapping("/manufacturers/save")
+	    public String saveManufacturer(@Valid @ModelAttribute("manufacturer") Manufacturer manufacturer, BindingResult validationResult) {
+	        if (validationResult.hasErrors()) {
+	            return "manufacturer/form";
+	        }
+	        manufacturerRepository.save(manufacturer);
+	        return "redirect:/manufacturers";
+	    }
 
-    @GetMapping("/manufacturers/form")
-    public String showManufacturerForm(@ModelAttribute("manufacturer") Manufacturer manufacturer) {
-        return "manufacturer/form";
-    }
+	    @GetMapping("/manufacturers/update/{id}")
+	    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
+	        Manufacturer manufacturer = manufacturerRepository.findById(id)
+	                .orElseThrow(() -> new IllegalArgumentException("ID de Fabricante inválido:" + id));
+	        model.addAttribute("manufacturer", manufacturer);
+	        return "manufacturer/form";
+	    }
 
-    @PostMapping("/manufacturers/new")
-    public String saveManufacturer(@Valid @ModelAttribute("manufacturer") Manufacturer manufacturer, BindingResult validationResult) {
-        if (validationResult.hasErrors()) {
-            return "manufacturer/form"; 
-        }
-        manufacturerRepository.save(manufacturer);
-        return "redirect:/manufacturers"; 
-    }
-
-    @GetMapping("/manufacturers/update/{id}")
-    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        Manufacturer manufacturer = manufacturerRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("ID de Fabricante inválido:" + id));
-        model.addAttribute("manufacturer", manufacturer);
-        return "manufacturer/form";
-    }
-
-    @GetMapping("/manufacturers/delete/{id}")
-    public String deleteManufacturer(@PathVariable("id") Integer id) {
-        Manufacturer manufacturer = manufacturerRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("ID de Fabricante inválido:" + id));
-        manufacturerRepository.delete(manufacturer);
-        return "redirect:/manufacturers";
-    }
-}
+	    @GetMapping("/manufacturers/delete/{id}")
+	    public String deleteManufacturer(@PathVariable("id") Integer id) {
+	        Manufacturer manufacturer = manufacturerRepository.findById(id)
+	                .orElseThrow(() -> new IllegalArgumentException("ID de Fabricante inválido:" + id));
+	        manufacturerRepository.delete(manufacturer);
+	        return "redirect:/manufacturers";
+	    }
+	}

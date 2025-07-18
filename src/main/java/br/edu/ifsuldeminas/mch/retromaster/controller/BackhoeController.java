@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
 @Controller
 @RequestMapping("/backhoes")
 public class BackhoeController {
@@ -23,20 +22,22 @@ public class BackhoeController {
 
     @Autowired
     private ManufacturerRepository manufacturerRepository;
-
+    private void loadManufacturers(Model model) {
+        List<Manufacturer> allManufacturers = manufacturerRepository.findAll();
+        model.addAttribute("allManufacturers", allManufacturers);
+    }
 
     @GetMapping
     public String listBackhoes(Model model) {
         List<Backhoe> backhoes = backhoeRepository.findAll();
         model.addAttribute("backhoes", backhoes);
-        // Retorna o caminho para o arquivo Thymeleaf
         return "backhoes/list";
     }
-    
+
     @GetMapping("/new")
     public String showNewForm(Model model) {
         model.addAttribute("backhoe", new Backhoe());
-        // Reutilizaremos o mesmo formulário para criar e editar
+        loadManufacturers(model);
         return "backhoes/form";
     }
 
@@ -45,30 +46,25 @@ public class BackhoeController {
         Optional<Backhoe> backhoe = backhoeRepository.findById(id);
         if (backhoe.isPresent()) {
             model.addAttribute("backhoe", backhoe.get());
+            loadManufacturers(model);
             return "backhoes/form";
         }
-        // Se não encontrar, redireciona para a lista
         return "redirect:/backhoes";
     }
 
     @PostMapping("/save")
     public String saveBackhoe(@Valid @ModelAttribute("backhoe") Backhoe backhoe, BindingResult result, Model model) {
-        // Verifica se há erros de validação
         if (result.hasErrors()) {
-            // Se houver erros, retorna para o formulário para que o usuário os corrija
+            loadManufacturers(model);
             return "backhoes/form";
         }
-        
         backhoeRepository.save(backhoe);
         return "redirect:/backhoes";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteBackhoe(@PathVariable("id") Integer id) {
-        // Verifica se o registro existe antes de deletar
         if (!backhoeRepository.existsById(id)) {
-            // Lógica para tratar caso o ID não exista (opcional)
-            // Por exemplo, lançar uma exceção ou logar um aviso
         } else {
            backhoeRepository.deleteById(id);
         }

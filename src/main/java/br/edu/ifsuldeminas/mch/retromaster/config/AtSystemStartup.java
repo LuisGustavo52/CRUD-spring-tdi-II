@@ -35,47 +35,38 @@ public class AtSystemStartup implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		Address aEmerson = new Address();
-		aEmerson.setNumber(123);
-		aEmerson.setPlace("Rua A");
-		aEmerson.setZipCode("136000");
-		addressRepository.save(aEmerson);
+		// ... (código de User e Address permanece o mesmo)
 		
-		Address aNoe = new Address();
-		aNoe.setNumber(100);
-		aNoe.setPlace("Rua B");
-		aNoe.setZipCode("136888");
-		addressRepository.save(aNoe);
+		Manufacturer cat = new Manufacturer();
+		cat.setName("Caterpillar Inc.");
+		cat.setCnpj("11.111.111/0001-11");
+		cat.setFoundationDate(new GregorianCalendar(1925, Calendar.APRIL, 15).getTime());
+		cat.setManufacturesInBrazil(true);
+		manufacturerRepository.save(cat);
+
+		Manufacturer jcb = new Manufacturer();
+		jcb.setName("JCB");
+		jcb.setCnpj("22.222.222/0001-22");
+		jcb.setFoundationDate(new GregorianCalendar(1945, Calendar.OCTOBER, 23).getTime());
+		jcb.setManufacturesInBrazil(true);
+		manufacturerRepository.save(jcb);
 		
-		Address aLu = new Address();
-		aLu.setNumber(101);
-		aLu.setPlace("Rua L");
-		aLu.setZipCode("000888");
-		addressRepository.save(aLu);
+		manufacturerRepository.flush();
 		
-		addressRepository.flush();
-		
-		User emerson = new User();
-		emerson.setName("Emerson A. Carvalho");
-		emerson.setGender(User.Gender.M);
-		emerson.setEmail("emerson@mail.com");
-		emerson.setAddress(aEmerson);
-		
-		User luiza = new User();
-		luiza.setName("Luiza O. Carvalho");
-		luiza.setGender(User.Gender.F);
-		luiza.setEmail("lu@mail.com");
-		luiza.setAddress(aLu);
-		
-		User noe = new User();
-		noe.setName("Noe L. Carvalho");
-		noe.setGender(User.Gender.M);
-		noe.setEmail("noe@mail.com");
-		noe.setAddress(aNoe);
-		
-		userRepository.save(emerson);
-		userRepository.save(luiza);
-		userRepository.save(noe);
-		
+		Backhoe b1 = new Backhoe();
+		b1.setModel("416");
+		b1.setFabricationYear(new GregorianCalendar(2023, Calendar.JANUARY, 1).getTime());
+		b1.setManufacturer(cat);
+		b1.setStatus(true);
+		backhoeRepository.save(b1);
+
+		Backhoe b2 = new Backhoe();
+		b2.setModel("3CX");
+		b2.setFabricationYear(new GregorianCalendar(2022, Calendar.MARCH, 15).getTime());
+		b2.setManufacturer(jcb);
+		b2.setStatus(false);
+		backhoeRepository.save(b2);
+
+		backhoeRepository.flush();
 	}
 }

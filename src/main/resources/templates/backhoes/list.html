@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<div th:replace="cabecalho :: head"></div>
-	
+	<div th:replace="~{cabecalho :: head}"></div>
     <title>Retromaster - Listagem de Retroescavadeiras</title>
 </head>
 
 <body>
-<div th:replace="cabecalho :: navbar"></div>
+<div th:replace="~{cabecalho :: navbar}"></div>
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Lista de Retroescavadeiras</h1>
@@ -32,7 +30,7 @@
         <tbody>
         <tr th:each="backhoe : ${backhoes}">
             <td th:text="${backhoe.model}">Caterpillar 416</td>
-            <td th:text="${#dates.format(backhoe.year, 'yyyy')}">2022</td>
+            <td th:text="${#dates.format(backhoe.fabricationYear, 'yyyy')}">2022</td>
             <td th:text="${backhoe.manufacturer.name}">Caterpillar Inc.</td>
             <td>
                 <span th:if="${backhoe.status}" class="badge bg-success">Ativa</span>

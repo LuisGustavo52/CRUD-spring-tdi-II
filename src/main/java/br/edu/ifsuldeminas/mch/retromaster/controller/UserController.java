@@ -26,14 +26,12 @@ public class UserController {
 	
 	@Autowired 
 	AddressRepository addressRepository;
-	
+
 	@GetMapping("/users")
 	public String users(Model model) {
-		List<User> users = userRepository.findAll();
-		
-		model.addAttribute("usuarios", users);
-		
-		return "index.html";
+	    List<User> users = userRepository.findAll();
+	    model.addAttribute("usuarios", users);
+	    return "users.html"; 
 	}
 	
 	@GetMapping("/users/form")
