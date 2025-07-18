@@ -2,54 +2,67 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-	<div th:replace="cabecalho :: head"></div>
-	
+    <div th:replace="~{cabecalho :: head}"></div>
+    
     <title>Página Inicial - Gestão de Retroescavadeiras</title>
+    
+    <style>
+        .jumbotron-with-image {
+            position: relative;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+        .jumbotron-with-image img {
+            width: 100%;
+            height: 450px; /* Altura fixa para o cabeçalho */
+            filter: brightness(0.6); /* Escurece a imagem para o texto ficar legível */
+        }
+        .jumbotron-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
 
 <body>
+    <div th:replace="~{cabecalho :: navbar}"></div>
 
-<div class="container mt-5">
-
-    <div class="p-5 mb-4 bg-light rounded-3 text-center">
-        <div class="container-fluid py-5">
+    <div class="p-5 mb-4 rounded-3 text-center jumbotron-with-image">
+        <img src="https://www.phoenixequipmentsales.com/wp-content/uploads/2019/04/bagger-288-excavator.jpg" alt="Retroescavadeira imponente em um canteiro de obras">
+        <div class="container-fluid py-5 jumbotron-text">
             <h1 class="display-5 fw-bold">Retromaster</h1>
             <p class="fs-4">Utilize os links abaixo para gerenciar os dados do sistema.</p>
         </div>
     </div>
 
-    <div class="row text-center">
-        <div class="col-md-6 mb-4">
-            <div class="card h-100 shadow-sm dashboard-card">
-                <div class="card-body">
-                    <h5 class="card-title">Gerenciar Retroescavadeiras</h5>
-                    <p class="card-text">Acesse para adicionar, editar, listar e remover retroescavadeiras do catálogo.</p>
-                    <a href="/backhoes" class="btn btn-primary">Ir para Retroescavadeiras</a>
-                </div>
-                <div class="card-footer text-muted">
-                    Registros Atuais: <span class="fw-bold" th:text="${backhoeCount}">0</span>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm dashboard-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Gerenciar Retroescavadeiras</h5>
+                        <p class="card-text">Acesse para adicionar, editar, listar e remover retroescavadeiras do catálogo.</p>
+                        <a href="/backhoes" class="btn btn-primary">Ir para Retroescavadeiras</a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-6 mb-4">
-            <div class="card h-100 shadow-sm dashboard-card">
-                <div class="card-body">
-                    <h5 class="card-title">Gerenciar Fabricantes</h5>
-                    <p class="card-text">Acesse para adicionar, editar, listar e remover os fabricantes de equipamentos.</p>
-                    <a href="/manufacturers" class="btn btn-secondary">Ir para Fabricantes</a>
-                </div>
-                <div class="card-footer text-muted">
-                    Registros Atuais: <span class="fw-bold" th:text="${manufacturerCount}">0</span>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm dashboard-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Gerenciar Fabricantes</h5>
+                        <p class="card-text">Acesse para adicionar, editar, listar e remover os fabricantes de equipamentos.</p>
+                        <a href="/manufacturers" class="btn btn-secondary">Ir para Fabricantes</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+            crossorigin="anonymous"></script>
 </body>
 </html>

@@ -2,13 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-	<div th:replace="cabecalho :: head"></div>
+	<div th:replace="~{cabecalho :: head}"></div>
 	
 	<title>Retromaster - Usuários</title>
 </head>
 
 <body>
-
+	<div th:replace="~{cabecalho :: navbar}"></div>
 	<div class="container my-3">
 		<h1>Usuários</h1>	
 		

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{cabecalho :: head}"></div>
+    <title>Formulário de Fabricante</title>
+</head>
+<body>
+<div th:replace="~{cabecalho :: navbar}"></div>
+<div class="container m-2">
+    <div class="offset-md-4">
+        <h2>Fabricante</h2>
+        <form action="#" method="POST" th:action="@{/manufacturers/new}" th:object="${manufacturer}">
+            <input type="hidden" id="id" th:field="*{id}">
+
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+            <input type="text" th:field="*{name}" class="form_control mb-3 col-8" placeholder="Nome">
+            <br/>
+
+            <span th:if="${#fields.hasErrors('foundationDate')}" th:errors="*{foundationDate}" class="text-danger"></span>
+            <input type="date" th:field="*{foundationDate}" class="form_control mb-3 col-8">
+            <br/>
+
+            <span th:if="${#fields.hasErrors('cnpj')}" th:errors="*{cnpj}" class="text-danger"></span>
+            <input type="text" th:field="*{cnpj}" class="form_control mb-3 col-8" placeholder="CNPJ">
+            <br/>
+            
+            <div class="form-check mb-3">
+                 <input type="checkbox" th:field="*{manufacturesInBrazil}" class="form-check-input">
+                 <label class="form-check-label" for="manufacturesInBrazil">Fabrica no Brasil</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary col-2">Salvar</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
