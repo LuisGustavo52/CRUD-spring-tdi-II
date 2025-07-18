@@ -1,5 +1,8 @@
 <th:block th:fragment="head">
 	<meta charset="UTF-8" />
+    
+    <link rel="icon" type="image/png" th:href="@{/images/excavator.png}">
+
 	<link rel="stylesheet"
 		  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 		  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
@@ -8,7 +11,7 @@
 	<link rel="stylesheet" 
 	      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	      
-	<link rel="stylesheet" href="th:href=“@{/static/style.css}">
+	<link rel="stylesheet" href="th:href=@{/static/style.css}">
 	
 	<script src="https://code.jquery.com/jquery-3.5.1.js"
 	        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
@@ -17,10 +20,10 @@
 
 	<style>
 		.navbar-brand .icon-img {
-			width: 36px;    
-			height: auto;     
-			margin-right: 8px; 
-			margin-top: -5px;  
+			width: 36px;      /* Largura da imagem */
+			height: auto;     /* Altura automática para manter a proporção */
+			margin-right: 8px; /* Espaço à direita da imagem */
+			margin-top: -5px;  /* Ajuste fino vertical */
 		}
 	</style>
 </th:block>
