@@ -38,7 +38,6 @@ public class ManufacturerController {
             return "manufacturer/form"; 
         }
         manufacturerRepository.save(manufacturer);
-        // Envia mensagem de sucesso ao salvar/atualizar
         redirectAttributes.addFlashAttribute("successMessage", "Fabricante salvo com sucesso!");
         return "redirect:/manufacturers"; 
     }

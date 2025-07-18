@@ -35,8 +35,7 @@ public class AtSystemStartup implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		// ... (código de User e Address permanece o mesmo)
-		
+
 		Manufacturer cat = new Manufacturer();
 		cat.setName("Caterpillar Inc.");
 		cat.setCnpj("11.111.111/0001-11");

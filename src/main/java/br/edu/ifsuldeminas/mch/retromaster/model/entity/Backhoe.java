@@ -33,7 +33,7 @@ public class Backhoe {
     @NotNull(message = "O ano de fabricação é obrigatório.")
     @PastOrPresent(message = "O ano de fabricação não pode ser uma data futura.")
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd") // ANOTAÇÃO ADICIONADA AQUI
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fabricationYear;
 
     @NotNull(message = "O fabricante é obrigatório.")
