@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<div th:replace="cabecalho :: head"></div>
+	
+    <title>Retromaster - Listagem de Retroescavadeiras</title>
+</head>
+
+<body>
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Lista de Retroescavadeiras</h1>
+        <a th:href="@{/backhoes/new}" class="btn btn-primary">Adicionar Nova</a>
+    </div>
+
+    <div th:if="${#lists.isEmpty(backhoes)}" class="alert alert-info" role="alert">
+        Nenhuma retroescavadeira cadastrada no momento.
+    </div>
+
+    <table class="table table-striped table-hover" th:unless="${#lists.isEmpty(backhoes)}">
+        <thead class="table-dark">
+        <tr>
+            <th>Modelo</th>
+            <th>Ano</th>
+            <th>Fabricante</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="backhoe : ${backhoes}">
+            <td th:text="${backhoe.model}">Caterpillar 416</td>
+            <td th:text="${#dates.format(backhoe.year, 'yyyy')}">2022</td>
+            <td th:text="${backhoe.manufacturer.name}">Caterpillar Inc.</td>
+            <td>
+                <span th:if="${backhoe.status}" class="badge bg-success">Ativa</span>
+                <span th:unless="${backhoe.status}" class="badge bg-danger">Inativa</span>
+            </td>
+            <td>
+                <a th:href="@{/backhoes/edit/{id}(id=${backhoe.id})}" class="btn btn-sm btn-warning">Editar</a>
+                <a th:href="@{/backhoes/delete/{id}(id=${backhoe.id})}" class="btn btn-sm btn-danger"
+                   onclick="return confirm('Tem certeza que deseja excluir esta retroescavadeira?');">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    
+    <div class="mt-4">
+        <a href="/" class="btn btn-secondary">Voltar para Home</a>
+    </div>
+</div>
+
+</body>
+</html>

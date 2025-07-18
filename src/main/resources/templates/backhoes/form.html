@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<div th:replace="cabecalho :: head"></div>
+	
+    <title>Retromaster - Cadastro de Retroescavadeiras</title>
+</head>
+
+<body>
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title" th:text="${backhoe.id == null ? 'Nova Retroescavadeira' : 'Editar Retroescavadeira'}">
+                Formulário</h2>
+        </div>
+        <div class="card-body">
+            <form th:action="@{/backhoes/save}" th:object="${backhoe}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+
+                <div class="mb-3">
+                    <label for="model" class="form-label">Modelo:</label>
+                    <input type="text" id="model" th:field="*{model}" class="form-control"
+                           th:classappend="${#fields.hasErrors('model')} ? 'is-invalid' : ''">
+                    <div th:if="${#fields.hasErrors('model')}" th:errors="*{model}" class="invalid-feedback"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="year" class="form-label">Ano de Fabricação:</label>
+                    <input type="date" id="year" th:field="*{year}" class="form-control"
+                           th:classappend="${#fields.hasErrors('year')} ? 'is-invalid' : ''">
+                    <div th:if="${#fields.hasErrors('year')}" th:errors="*{year}" class="invalid-feedback"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="manufacturer" class="form-label">Fabricante:</label>
+                    <select id="manufacturer" th:field="*{manufacturer}" class="form-select"
+                            th:classappend="${#fields.hasErrors('manufacturer')} ? 'is-invalid' : ''">
+                        <option value="">Selecione um fabricante</option>
+                        <option th:each="manuf : ${allManufacturers}"
+                                th:value="${manuf.id}"
+                                th:text="${manuf.name}">Fabricante
+                        </option>
+                    </select>
+                    <div th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}"
+                         class="invalid-feedback"></div>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input type="checkbox" id="status" th:field="*{status}" class="form-check-input">
+                    <label for="status" class="form-check-label">Ativa</label>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <a th:href="@{/backhoes}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

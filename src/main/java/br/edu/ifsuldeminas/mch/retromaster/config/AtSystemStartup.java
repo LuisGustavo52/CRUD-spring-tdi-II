@@ -1,12 +1,19 @@
 package br.edu.ifsuldeminas.mch.retromaster.config;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.ifsuldeminas.mch.retromaster.model.entity.Address;
+import br.edu.ifsuldeminas.mch.retromaster.model.entity.Backhoe;
+import br.edu.ifsuldeminas.mch.retromaster.model.entity.Manufacturer;
 import br.edu.ifsuldeminas.mch.retromaster.model.entity.User;
 import br.edu.ifsuldeminas.mch.retromaster.model.repository.AddressRepository;
+import br.edu.ifsuldeminas.mch.retromaster.model.repository.BackhoeRepository;
+import br.edu.ifsuldeminas.mch.retromaster.model.repository.ManufacturerRepository;
 import br.edu.ifsuldeminas.mch.retromaster.model.repository.UserRepository;
 import jakarta.transaction.Transactional;
 
@@ -19,6 +26,12 @@ public class AtSystemStartup implements CommandLineRunner {
 	
 	@Autowired
 	private AddressRepository addressRepository;
+	
+	@Autowired
+	private BackhoeRepository backhoeRepository;
+	
+	@Autowired
+	private ManufacturerRepository manufacturerRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -63,5 +76,6 @@ public class AtSystemStartup implements CommandLineRunner {
 		userRepository.save(emerson);
 		userRepository.save(luiza);
 		userRepository.save(noe);
+		
 	}
 }
