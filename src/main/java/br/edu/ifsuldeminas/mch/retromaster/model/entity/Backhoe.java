@@ -44,7 +44,6 @@ public class Backhoe {
     @NotNull(message = "O status é obrigatório")
     private boolean status;
 	
-	// Getters e Setters (sem alterações)
 	public Integer getId() {
 		return id;
 	}

@@ -1,12 +1,15 @@
 package br.edu.ifsuldeminas.mch.retromaster.model.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -29,6 +32,10 @@ public class Manufacturer {
     @NotNull(message = "É necessário informar se fabrica no Brasil.")
     private boolean manufacturesInBrazil;
 
+    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
+    private List<Backhoe> backhoes;
+
+    // Getters e Setters
     public Integer getId() {
         return id;
     }
@@ -67,5 +74,13 @@ public class Manufacturer {
 
     public void setManufacturesInBrazil(boolean manufacturesInBrazil) {
         this.manufacturesInBrazil = manufacturesInBrazil;
+    }
+    
+    public List<Backhoe> getBackhoes() {
+        return backhoes;
+    }
+
+    public void setBackhoes(List<Backhoe> backhoes) {
+        this.backhoes = backhoes;
     }
 }

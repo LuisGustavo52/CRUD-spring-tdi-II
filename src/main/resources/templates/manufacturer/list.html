@@ -6,14 +6,14 @@
 </head>
 <body>
 <div th:replace="~{cabecalho :: navbar}"></div>
-<div class="container mt-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Lista de Fabricantes</h1>
-        <a th:href="@{/manufacturers/form}" class="btn btn-primary">Adicionar Novo</a>
-    </div>
+<div class="container my-3">
 
-    <div th:if="${#lists.isEmpty(manufacturers)}" class="alert alert-info" role="alert">
-        Nenhum fabricante cadastrado no momento.
+    <div th:if="${successMessage}" class="alert alert-success" role="alert" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert" th:text="${errorMessage}"></div>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Fabricantes</h1>
+        <a th:href="@{/manufacturers/form}" class="btn btn-primary">Adicionar Novo</a>
     </div>
 
     <table class="table table-striped table-hover" th:unless="${#lists.isEmpty(manufacturers)}">
@@ -35,7 +35,7 @@
             <td>
                 <a th:href="@{/manufacturers/update/{id}(id=${manufacturer.id})}" class="btn btn-sm btn-warning">Editar</a>
                 <a th:href="@{/manufacturers/delete/{id}(id=${manufacturer.id})}" class="btn btn-sm btn-danger"
-                   onclick="return confirm('Tem certeza que deseja excluir este fabricante?');">Excluir</a>
+                   onclick="return confirm('Tem certeza que deseja excluir este fabricante?');">Deletar</a>
             </td>
         </tr>
         </tbody>
